@@ -1,3 +1,6 @@
+/* eslint-disable no-undef */
+/* eslint-disable prefer-arrow-callback */
+
 $(function feedback() {
     /**
      * Updates the DOM
@@ -7,13 +10,21 @@ $(function feedback() {
       const render = [];
       // Reset all status messages
       $('.feedback-status').empty();
+      console.log(data)
   
       // All went well
+      console.log("data errors")
       if (!data.errors && data.feedback) {
         // The input was valid - reset the form
         $('.feedback-form').trigger('reset');
+
+        // Data Picker Initialization
+        // $('.form-dateOfParty').datepicker({
+        //   inline: true
+        // });
   
         $.each(data.feedback, function createHtml(key, item) {
+          console.log("sending info")
           render.push(`
           <div class="feedback-item item-list media-list">
             <div class="feedback-item media">
@@ -24,6 +35,11 @@ $(function feedback() {
                 </div>
                 <div class="feedback-message">
                   ${item.message}
+                </div>
+                <div>
+                  <div class="feedback-dateOfParty">
+                    ${item.dateOfParty}
+                  </div>
                 </div>
               </div>
             </div>
@@ -53,9 +69,10 @@ $(function feedback() {
      * Attaches to the form and sends the data to our REST endpoint
      */
     $('.feedback-form').submit(function submitFeedback(e) {
+
       // Prevent the default submit form event
       e.preventDefault();
-  
+      
       // XHR POST request
       $.post(
         '/feedback/api',
@@ -65,6 +82,7 @@ $(function feedback() {
           email: $('#feedback-form-email').val(),
           title: $('#feedback-form-title').val(),
           message: $('#feedback-form-message').val(),
+          dateOfParty: $('#feedback-form-dateOfParty').val(),
         },
         // Callback to be called with the data
         updateFeedback
