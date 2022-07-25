@@ -84,7 +84,7 @@ app.use((req, res, next) => {
     return next(createError(404, 'File not found'))
 });
 
-// express has built in error handeling 
+// express has built in error handling 
 app.use((err, req, res, next) => {
     res.locals.message = err.message
     console.log(err)

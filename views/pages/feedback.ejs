@@ -38,27 +38,19 @@
                 placeholder="Enter your email address"
               />
             </div>
+            <!-- phone number -->
             <div class="form-group">
-              <label for="feedback-form-title">Title</label>
+              <label for="feedback-form-phoneNumber">Phone Number</label>
               <input
-                type="text"
+                type="tel"
                 class="form-control"
-                id="feedback-form-title"
-                name="title"
-                placeholder="Title of your feedback"
-              />
-            </div>
-            <div class="form-group">
-              <label for="feedback-form-message">Message</label>
-              <textarea
-                type="text"
-                placeholder="Enter your message, then hit the submit button"
-                class="form-control"
-                id="feedback-form-message"
-                name="message"
-                rows="6"
-              ></textarea>
-            </div>
+                id="feedback-form-phoneNumber"
+                name="phoneNumber"
+                placeholder="Phone Number"
+                />
+                <!-- pattern="/^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$/" -->
+              </div>
+
             <!-- date of party -->
             <div class="form-group">
               <label for="feedback-form-dateOfParty">Date of Party</label>
@@ -88,11 +80,10 @@
               <div class="feedback-item media">
                 <div class="feedback-info media-body">
                   <div class="feedback-head">
-                    <div class="feedback-title"><%= item.title %></div>
-                    <small><%= item.name %> </small>
-                  </div>
-                  <div class="feedback-message"><%= item.message %></div>
-                  <div class="feedback-dateOfParty"><%= item.dateOfParty %> </div>
+                    <div class="feedback-name"><%= item.name %></div>
+                    <div class="feedback-email"><%= item.email %></div>
+                    <div class="feedback-phoneNumber"><%= item.phoneNumber %></div>
+                    <div class="feedback-dateOfParty"><%= item.dateOfParty %> </div>
                 </div>
               </div>
             </div>

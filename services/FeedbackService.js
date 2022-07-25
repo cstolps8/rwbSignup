@@ -1,5 +1,6 @@
 const fs = require('fs');
 const util = require('util');
+const converter = require('json-2-csv')
 
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
@@ -27,13 +28,11 @@ class FeedbackService {
   /**
    * Add a new feedback item
    * @param {*} name The name of the user
-   * @param {*} title The title of the feedback message
-   * @param {*} message The feedback message
+
    */
-  async addEntry(name, email, title, message, dateOfParty) {
-    console.log(dateOfParty)
+  async addEntry(name, email, phoneNumber, dateOfParty) {
     const data = (await this.getData()) || [];
-    data.unshift({ name, email, title, message, dateOfParty });
+    data.unshift({ name, email, phoneNumber, dateOfParty });
     return writeFile(this.datafile, JSON.stringify(data));
   }
 
@@ -44,6 +43,15 @@ class FeedbackService {
     const data = await readFile(this.datafile, 'utf8');
     if (!data) return [];
     return JSON.parse(data);
+  }
+
+  async exportToCSV() {
+    const data = await readFile(this.datafile, 'utf-8')
+    if (!data) return [];
+    converter.csv2jsonAsync(data)
+      .then(writeFile(this.datafile, JSON.stringify(data)))
+      .catch((err) => console.log('ERROR: ' + err.message));
+    return
   }
 }
 

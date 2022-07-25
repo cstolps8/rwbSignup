@@ -86,10 +86,10 @@ header .navbar-brand {
   border-radius: 0%;
 }
 
-.feedback-name {
+/* .feedback-name {
   font-size: .6em;
   font-weight: 100;
-}
+} */
 
 .feedback-message {
   font-weight: 100;

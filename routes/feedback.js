@@ -16,16 +16,10 @@ const validations = [
         .isEmail()
         .normalizeEmail()
         .withMessage('A email is required'),
-    check('title')
+    check('phoneNumber')
         .trim()
-        .isLength({ min: 3 })
-        .escape()
-        .withMessage('A title is required'),
-    check('message')
-        .trim()
-        .isLength({ min: 5 })
-        .escape()
-        .withMessage('A message is required'),
+        .isMobilePhone()
+        .withMessage('A phone number is required'),
     check('dateOfParty')
         .isDate()
         .escape()
@@ -70,9 +64,9 @@ module.exports = params => {
                 return res.redirect('/feedback')
             }
             // get all the sanitized data from the feedback form
-            const { name, email, title, message, dateOfParty } = req.body
+            const { name, email, phoneNumber, dateOfParty } = req.body
             console.log(req.body)
-            await feedbackService.addEntry(name, email, title, message, dateOfParty)
+            await feedbackService.addEntry(name, email, phoneNumber, dateOfParty)
             req.session.feedback = {
                 message: 'Thank you for your feedback'
             }
@@ -93,8 +87,8 @@ module.exports = params => {
                 return res.json({ errors: errors.array() })
             }
 
-            const { name, email, title, message, dateOfParty } = req.body
-            await feedbackService.addEntry(name, email, title, message, dateOfParty)
+            const { name, email, phoneNumber, dateOfParty } = req.body
+            await feedbackService.addEntry(name, email, phoneNumber, dateOfParty)
             const feedback = await feedbackService.getList();
             return res.json({ feedback })
 
