@@ -24,6 +24,14 @@ const validations = [
         .isDate()
         .escape()
         .withMessage('A date is required'),
+    // check('receivePromos')
+    //     .isBoolean(),
+    // check('receiveTexts')
+    //     .isBoolean()
+    //     .withMessage('A date is required'),
+
+    // check('entry')
+    //     .exists()
 ]
 
 module.exports = params => {
@@ -53,6 +61,7 @@ module.exports = params => {
 
 
     router.post('/', validations, async (req, res, next) => {
+        console.log("sending root")
         try {
             // this is where we process the data from the form 
             const errors = validationResult(req)
@@ -64,9 +73,10 @@ module.exports = params => {
                 return res.redirect('/feedback')
             }
             // get all the sanitized data from the feedback form
-            const { name, email, phoneNumber, dateOfParty } = req.body
-            console.log(req.body)
-            await feedbackService.addEntry(name, email, phoneNumber, dateOfParty)
+            const { entry, name, email, phoneNumber, dateOfParty, receivePromos, receiveTexts } = req.body
+
+            
+            await feedbackService.addEntry(entry, name, email, phoneNumber, dateOfParty, receivePromos, receiveTexts)
             req.session.feedback = {
                 message: 'Thank you for your feedback'
             }
@@ -74,28 +84,50 @@ module.exports = params => {
             return res.redirect('/feedback')
             // console.log(req.body)
             // return res.send(`feedback from posted`)
-
+            
         } catch (error) {
             return next(error)
         }
     });
-
+    
     router.post('/api', validations, async (req, res, next) => {
         try {
             const errors = validationResult(req);
+            console.log("Sending post api")
             if (!errors.isEmpty()) {
+                console.log(errors.array())
                 return res.json({ errors: errors.array() })
             }
-
-            const { name, email, phoneNumber, dateOfParty } = req.body
-            await feedbackService.addEntry(name, email, phoneNumber, dateOfParty)
+            
+            const { entry, name, email, phoneNumber, dateOfParty, receivePromos, receiveTexts } = req.body
+            console.log("Entry number: "+ entry)
+            await feedbackService.addEntry(entry, name, email, phoneNumber, dateOfParty, receivePromos, receiveTexts)
             const feedback = await feedbackService.getList();
             return res.json({ feedback })
-
+            
         } catch (error) {
             return next(error)
         }
     });
+
+    router.delete('/api', validations, async (req, res, next) => {
+        try {
+            const errors = validationResult(req);
+            console.log("Sending delete api")
+            if (!errors.isEmpty()) {
+                return res.json({ errors: errors.array() })
+            }
+            
+            const { entry, name, email, phoneNumber, dateOfParty, receivePromos, receiveTexts } = req.body
+            console.log("Entry number: "+ entry)
+            await feedbackService.deleteEntry(entry, name, email, phoneNumber, dateOfParty, receivePromos, receiveTexts)
+            const feedback = await feedbackService.getList();
+            return res.json({ feedback })
+            
+        } catch (error) {
+            return next(error)
+        }
+    })
 
     return router;
 

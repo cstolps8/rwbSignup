@@ -8,16 +8,19 @@
     "dev": "nodemon --ignore feedback.json server.js"
   },
   "keywords": [],
-  "author": "Daniel Khan",
+  "author": "Collin Stolpa",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cookie-session": "^1.4.0",
+    "csvjson-json2csv": "^1.0.3",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-validator": "^6.12.1",
     "http-errors": "^1.7.2",
-    "json-2-csv": "^3.17.1"
+    "json-2-csv": "^3.17.1",
+    "json2csv": "^5.0.7",
+    "uniqid": "^5.4.0"
   },
   "devDependencies": {
     "eslint": "^7.31.0",
