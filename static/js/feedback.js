@@ -83,7 +83,6 @@ $(function feedback() {
     } else {
       // There was an error
       // Create a list of errors
-      console.log("THere was errors in updatingFeedback")
       $.each(data.errors, function createHtml(key, error) {
         render.push(`
         <li>${error.msg}</li>
@@ -91,8 +90,9 @@ $(function feedback() {
       });
       console.log(render)
       // Set the status message
+      console.log("THere was errors in updatingFeedback")
       $('.feedback-status').html(
-
+        
         `<div class="alert alert-danger"><ul>${render.join('\n')}</ul></div>`
       );
     }
@@ -129,35 +129,35 @@ $(function feedback() {
     );
   });
 
-  $('.btn-danger').on('click', function(e) {
-    console.log("button clicked")
-    var id = $(this).parent().parent().prop("id")//.closest('tr').find('#feedback-table-row')//.id;
+  // $('.btn-danger').on('click', function(e) {
+  //   console.log("button clicked")
+  //   var id = $(this).parent().parent().prop("id")//.closest('tr').find('#feedback-table-row')//.id;
 
-    //$("#"+id).remove()
+  //   //$("#"+id).remove()
 
-    //xhr DELETE   
-    $.post(
-      '/feedback/api',
-      // Gather all data from the form and create a JSON object from it
-      {
-        entry: id,
-        name: $('#feedback-form-name').val(),
-        email: $('#feedback-form-email').val(),
-        phoneNumber: $('#feedback-form-phoneNumber').val(),
-        dateOfParty: $('#feedback-form-dateOfParty').val(),
-        receivePromos: $('#feedback-form-receivePromos').prop("checked"),
-        receiveTexts: $('#feedback-form-receiveTexts').prop("checked"),
-      },
-      // Callback to be called with the data
-      //updateFeedback
-    );
+  //   //xhr DELETE   
+  //   $.post(
+  //     '/feedback/api',
+  //     // Gather all data from the form and create a JSON object from it
+  //     {
+  //       entry: id,
+  //       name: $('#feedback-form-name').val(),
+  //       email: $('#feedback-form-email').val(),
+  //       phoneNumber: $('#feedback-form-phoneNumber').val(),
+  //       dateOfParty: $('#feedback-form-dateOfParty').val(),
+  //       receivePromos: $('#feedback-form-receivePromos').prop("checked"),
+  //       receiveTexts: $('#feedback-form-receiveTexts').prop("checked"),
+  //     },
+  //     // Callback to be called with the data
+  //     updateFeedback
+  //   );
     
 
-    console.log(id);
-  }
-        // Callback to be called with the data
-        //updateFeedback
-  );
+  //   console.log(id);
+  // }
+  //       //Callback to be called with the data
+        
+  // );
 
   function uniqid(random = false) {
     const sec = Date.now() * 1000 + Math.random() * 1000;

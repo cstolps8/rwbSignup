@@ -55,7 +55,7 @@ class FeedbackService {
    * Fetches feedback data from the JSON file provided to the constructor
    */
   async getData() {
-    console.log('getting data')
+    console.log('getting JSON data')
     const data = await readFile(this.datafile, 'utf8');
     if (!data) return [];
     return JSON.parse(data);
