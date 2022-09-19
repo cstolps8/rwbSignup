@@ -7,9 +7,11 @@ const bodyParser = require('body-parser');
 
 const FeedbackService = require('./services/FeedbackService');
 const SpeakersService = require('./services/SpeakerService');
+const FBResultService = require('./services/FBResultService')
 
 const feedbackService = new FeedbackService('./data/feedback.json');
 const speakersService = new SpeakersService('./data/speakers.json');
+const fbResultService = new FBResultService('./data/feedback.json');
 
 const routes = require('./routes');
 
@@ -53,6 +55,7 @@ app.use(
   routes({
     feedbackService,
     speakersService,
+    fbResultService,
   })
 );
 

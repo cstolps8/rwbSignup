@@ -1,0 +1,49 @@
+<div class="container mt-4">
+    <div class="row">
+      <aside class="col-md-8">
+        <div class="maincontent feedback">
+          <h1>Recent Feedback</h1>
+          <div class="feedback-items">
+            <div class="feedback-item item-list media-list">
+              <div class="feedback-item media">
+                <div class="feedback-info media-body">
+                  <div class="feedback-head">
+  
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col" >Name</th>
+                          <th scope="col"> Email</th>
+                          <th scope="col"> Phone Number</th>
+                          <th scope="col"> Date Of Party</th>
+                          <th scope="col"> Receive Promotions</th>
+                          <th scope="col"> Reieve Texts</th>
+                        </tr>
+                      </thead>
+                      
+                      <tbody class="feedback-table-body">
+                        <% fbResult.forEach(function (item){ %>
+                          <tr class="feedback-table-row" id= <%= item.entry %> >
+                            <!-- <th scope="row">1</th> -->
+                            <td class="feedback-name"><%= item.name %></td>
+                            <td class="feedback-email"><%= item.email %></td>
+                            <td class="feedback-phoneNumber"><%= item.phoneNumber %></td>
+                            <td class="feedback-dateOfParty"><%= item.dateOfParty %></td>
+                            <td class="feedback-receivePromos"><%= item.receivePromos %></td>
+                            <td class="feedback-receiveTexts"><%= item.receiveTexts %></td>
+                            <td><button type="button" class="btn btn-danger feedback-delete"> Delete</button></td>
+                          </tr>     
+                        <% })%>
+                      </tbody>
+                    </table>
+  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+  
