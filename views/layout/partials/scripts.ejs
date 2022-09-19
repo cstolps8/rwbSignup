@@ -14,10 +14,8 @@
   crossorigin="anonymous"
 ></script>
 
-<!-- here we are loading in the javascript -->
-<% if (locals.artwork){%>
+<% if (locals.artwork) {%>
 <script src="/js/pixgrid.js"></script>
-<!-- the feedback template is only loaded on the feedback page-->
-<%} %> <% if (locals.feedback){%>
+<%}%> <% if (locals.feedback) {%>
 <script src="/js/feedback.js"></script>
-<%} %>
+<%}%>

@@ -1,5 +1,5 @@
-const fs = require("fs");
-const util = require("util");
+const fs = require('fs');
+const util = require('util');
 
 /**
  * We want to use async/await with fs.readFile - util.promisfy gives us that
@@ -26,8 +26,6 @@ class SpeakerService {
 
     // We are using map() to transform the array we get into another one
     return data.map(speaker => {
-      // this error is thrown but doesnt take down our application
-    //  throw   new Error("Throw from get names");
       return { name: speaker.name, shortname: speaker.shortname };
     });
   }
@@ -77,7 +75,7 @@ class SpeakerService {
       title: speaker.title,
       name: speaker.name,
       shortname: speaker.shortname,
-      description: speaker.description
+      description: speaker.description,
     };
   }
 
@@ -90,7 +88,7 @@ class SpeakerService {
       return {
         name: speaker.name,
         shortname: speaker.shortname,
-        title: speaker.title
+        title: speaker.title,
       };
     });
   }
@@ -105,7 +103,7 @@ class SpeakerService {
         name: speaker.name,
         shortname: speaker.shortname,
         title: speaker.title,
-        summary: speaker.summary
+        summary: speaker.summary,
       };
     });
   }
@@ -114,7 +112,7 @@ class SpeakerService {
    * Fetches speakers data from the JSON file provided to the constructor
    */
   async getData() {
-    const data = await readFile(this.datafile, "utf8");
+    const data = await readFile(this.datafile, 'utf8');
     return JSON.parse(data).speakers;
   }
 }

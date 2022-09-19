@@ -1,42 +1,39 @@
-
 const express = require('express');
 
-const router = express.Router()
+const router = express.Router();
 
 module.exports = params => {
+  const { speakersService } = params;
 
-    const { speakerService } = params;
+  router.get('/', async (request, response, next) => {
+    try {
+      const speakers = await speakersService.getList();
+      const artwork = await speakersService.getAllArtwork();
+      return response.render('layout', {
+        pageTitle: 'Speakers',
+        template: 'speakers',
+        speakers,
+        artwork,
+      });
+    } catch (err) {
+      return next(err);
+    }
+  });
 
-    router.get('/', async (req, res, next) => {
-        try {
-            const speakers = await speakerService.getList();
-            const artwork = await speakerService.getAllArtwork();
+  router.get('/:shortname', async (request, response, next) => {
+    try {
+      const speaker = await speakersService.getSpeaker(request.params.shortname);
+      const artwork = await speakersService.getArtworkForSpeaker(request.params.shortname);
+      return response.render('layout', {
+        pageTitle: 'Speakers',
+        template: 'speakers-detail',
+        speaker,
+        artwork,
+      });
+    } catch (err) {
+      return next(err);
+    }
+  });
 
-            return res.render('layout', { pageTitle: 'Speakers', template: 'speakers', speakers, artwork })
-
-        } catch (error) {
-            return next(error)
-        }
-    });
-
-
-    router.get('/:shortname', async (req, res, next) => {
-        try {
-            const speaker = await speakerService.getSpeaker(req.params.shortname)
-            const artwork = await speakerService.getArtworkForSpeaker(req.params.shortname)
-            console.log(artwork)
-            return res.render('layout', {
-                pageTitle: 'Speakers',
-                template: 'speakers-detail',
-                speaker,
-                artwork
-            });
-        } catch (error) {
-            return next(error)
-        }
-
-    });
-
-    return router;
-
-}
+  return router;
+};

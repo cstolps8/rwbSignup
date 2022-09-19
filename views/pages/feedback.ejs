@@ -4,137 +4,143 @@
       <div class="maincontent">
         <h1>Send us feedback</h1>
 
-        <% if(locals.errors){%>
-        <div class="alert alert-danger">
-          <ul>
-            <% errors.forEach(function(error){%>
-            <li><%= error.msg%></li>
-            <% })%>
-          </ul>
+        <div class="feedback-status">
+          <% if(locals.errors) {%>
+          <div class="alert alert-danger">
+            <ul>
+              <% errors.forEach(function (error) {%>
+              <li><%= error.msg %></li>
+              <%})%>
+            </ul>
+          </div>
+          <%} else if(locals.successMessage) {%>
+          <div class="alert alert-success">
+            <%= successMessage %>
+          </div>
+          <%}%>
         </div>
-        <%} else if(locals.successMsg){%>
-            <div class = "alert alert-success">
-              <%= successMsg %> 
-            </div>
-            <% } %> 
-          <form class="feedback-form" method="POST" action="/feedback">
-            <div class="form-group">
-              <label for="feedback-form-name">Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="feedback-form-name"
-                name="name"
-                placeholder="Enter your name"
+
+        <form class="feedback-form" method="POST" action="/feedback">
+          <div class="form-group">
+            <label for="feedback-form-name">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="feedback-form-name"
+              name="name"
+              placeholder="Enter your name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="feedback-form-email">E-Mail</label>
+            <input
+              type="text"
+              class="form-control"
+              id="feedback-form-email"
+              name="email"
+              placeholder="Enter your email address"
+            />
+          </div>
+
+
+          <!-- phone number -->
+          <div class="form-group">
+            <label for="feedback-form-phoneNumber">Phone Number</label>
+            <input
+              type="tel"
+              class="form-control"
+              id="feedback-form-phoneNumber"
+              name="phoneNumber"
+              placeholder="Phone Number"
               />
-            </div>
-            <div class="form-group">
-              <label for="feedback-form-email">E-Mail</label>
-              <input
-                type="text"
-                class="form-control"
-                id="feedback-form-email"
-                name="email"
-                placeholder="Enter your email address"
+              <!-- pattern="/^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$/" -->
+          </div>
+
+          <!-- date of party -->
+          <div class="form-group">
+            <label for="feedback-form-dateOfParty">Date of Party</label>
+            <div id="form-dateOfParty" class="md-form md-outline input-with-post-icon datepicker" inline="true">
+              <input 
+              type="date" 
+              id="feedback-form-dateOfParty"
+              name="dateOfParty"
+              class="form-control"
               />
+
+              <i class="fas fa-calendar input-prefix"></i>
+
+              
             </div>
-            <!-- phone number -->
-            <div class="form-group">
-              <label for="feedback-form-phoneNumber">Phone Number</label>
-              <input
-                type="tel"
-                class="form-control"
-                id="feedback-form-phoneNumber"
-                name="phoneNumber"
-                placeholder="Phone Number"
-                />
-                <!-- pattern="/^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$/" -->
-              </div>
+          </div>
 
-            <!-- date of party -->
-            <div class="form-group">
-              <label for="feedback-form-dateOfParty">Date of Party</label>
-              <div id="form-dateOfParty" class="md-form md-outline input-with-post-icon datepicker" inline="true">
-                <input 
-                type="date" 
-                id="feedback-form-dateOfParty"
-                name="dateOfParty"
-                class="form-control"
-                />
+          <!-- Recive text and emails for promotions  -->
+          <div class="form-group ">
+            <label for="feedback-form-receivePromos">Receive promotions</label>
+            <input
+              type="checkbox"
+              class="form-control"
+              id="feedback-form-receivePromos"
+              name="receivePromos"
+              />
+          </div>
 
-                <i class="fas fa-calendar input-prefix"></i>
+          <div class="form-group ">
+            <label for="feedback-form-receiveTexts">Receive Texts</label>
+            <input
+              type="checkbox"
+              class="form-control"
+              id="feedback-form-receiveTexts"
+              name="receiveTexts"
+              />
+          </div>          
 
-                
-              </div>
-            </div>
-
-            <!-- Recive text and emails for promotions  -->
-            <div class="form-group ">
-              <label for="feedback-form-receivePromos">Receive promotions</label>
-              <input
-                type="checkbox"
-                class="form-control"
-                id="feedback-form-receivePromos"
-                name="receivePromos"
-                />
-            </div>
-            <div class="form-group ">
-              <label for="feedback-form-receiveTexts">Receive Texts</label>
-              <input
-                type="checkbox"
-                class="form-control"
-                id="feedback-form-receiveTexts"
-                name="receiveTexts"
-                />
-            </div>
-
-            <button type="submit" class="btn btn-secondary float-right">Submit</button>
-          </form>
-        </div>
+          <button type="submit" class="btn btn-secondary float-right">Submit</button>
+        </form>
       </div>
-      <aside class="col-md-8">
-        <div class="maincontent feedback">
-          <h1>Recent Feedback</h1>
-          <div class="feedback-items">
-            <div class="feedback-item item-list media-list">
-              <div class="feedback-item media">
-                <div class="feedback-info media-body">
-                  <div class="feedback-head">
+    </div>
+    <aside class="col-md-8">
+      <div class="maincontent feedback">
+        <h1>Recent Feedback</h1>
+        <div class="feedback-items">
+          <div class="feedback-item item-list media-list">
+            <div class="feedback-item media">
+              <div class="feedback-info media-body">
+                <div class="feedback-head">
 
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th scope="col" >Name</th>
-                          <th scope="col"> Email</th>
-                          <th scope="col"> Phone Number</th>
-                          <th scope="col"> Date Of Party</th>
-                          <th scope="col"> Receive Promotions</th>
-                          <th scope="col"> Reieve Texts</th>
-                        </tr>
-                      </thead>
-                      
-                      <tbody class="feedback-table-body">
-                        <% feedback.forEach(function (item){ %>
-                          <tr class="feedback-table-row" id= <%= item.entry %> >
-                            <!-- <th scope="row">1</th> -->
-                            <td class="feedback-name"><%= item.name %></td>
-                            <td class="feedback-email"><%= item.email %></td>
-                            <td class="feedback-phoneNumber"><%= item.phoneNumber %></td>
-                            <td class="feedback-dateOfParty"><%= item.dateOfParty %></td>
-                            <td class="feedback-receivePromos"><%= item.receivePromos %></td>
-                            <td class="feedback-receiveTexts"><%= item.receiveTexts %></td>
-                            <td><button type="button" class="btn btn-danger feedback-delete"> Delete</button></td>
-                          </tr>     
-                        <% })%>
-                      </tbody>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col" >Name</th>
+                        <th scope="col"> Email</th>
+                        <th scope="col"> Phone Number</th>
+                        <th scope="col"> Date Of Party</th>
+                        <th scope="col"> Receive Promotions</th>
+                        <th scope="col"> Reieve Texts</th>
+                      </tr>
+                    </thead>
+                    
+                    <tbody class="feedback-table-body">
+                      <% feedback.forEach(function (item){ %>
+                        <tr class="feedback-table-row" id= <%= item.entry %> >
+                          <!-- <th scope="row">1</th> -->
+                          <td class="feedback-name"><%= item.name %></td>
+                          <td class="feedback-email"><%= item.email %></td>
+                          <td class="feedback-phoneNumber"><%= item.phoneNumber %></td>
+                          <td class="feedback-dateOfParty"><%= item.dateOfParty %></td>
+                          <td class="feedback-receivePromos"><%= item.receivePromos %></td>
+                          <td class="feedback-receiveTexts"><%= item.receiveTexts %></td>
+                          <!-- <td><button type="button" class="btn btn-danger feedback-delete"> Delete</button></td> -->
+                        </tr>     
+                      <% })%>
+                    </tbody>
                   </table>
+
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </aside>
-
-    </div>
+      </div>
+    </aside>
   </div>
 </div>
