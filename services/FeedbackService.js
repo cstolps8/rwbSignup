@@ -35,15 +35,15 @@ class FeedbackService {
    * @param {*} name The name of the user
 
    */
-   async addEntry(entry, name, email, phoneNumber, dateOfParty, receivePromos, receiveTexts ) {
-    console.log("adding entry")
-    const data = (await this.getData()) || [];
-    console.log("last entry ")
-    console.log (data)
-    data.unshift({entry, name, email, phoneNumber, dateOfParty, receivePromos, receiveTexts  });
-    // await this.exportToCSV()
-    return writeFile(this.datafile, JSON.stringify(data));
-  }
+  //  async addEntry(entry, name, email, phoneNumber, dateOfParty, receivePromos, receiveTexts ) {
+  //   console.log("adding entry")
+  //   const data = (await this.getData()) || [];
+  //   console.log("last entry ")
+  //   console.log (data)
+  //   data.unshift({entry, name, email, phoneNumber, dateOfParty, receivePromos, receiveTexts  });
+  //   // await this.exportToCSV()
+  //   return writeFile(this.datafile, JSON.stringify(data));
+  // }
 
   async addEntryToCSV(entry, name, email, phoneNumber, dateOfParty, receivePromos, receiveTexts ){
     

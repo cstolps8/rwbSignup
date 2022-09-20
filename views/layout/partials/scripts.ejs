@@ -15,7 +15,11 @@
 ></script>
 
 <% if (locals.artwork) {%>
-<script src="/js/pixgrid.js"></script>
-<%}%> <% if (locals.feedback) {%>
-<script src="/js/feedback.js"></script>
+  <script src="/js/pixgrid.js"></script>
+<%}%> 
+<% if (locals.feedback) {%>
+  <script src="/js/feedback.js"></script>
+<%}%>
+<% if (locals.fbResult) {%>
+  <script src="/js/fbResult.js"></script>
 <%}%>

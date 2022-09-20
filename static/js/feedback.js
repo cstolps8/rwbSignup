@@ -1,17 +1,22 @@
 $(function feedback() {
+ console.log("Calling results javascript")
+
   /**
    * Updates the DOM
    * @param {*} data XHR result
    */
   function updateFeedback(data) {
     const render = [];
+    console.log("updateFeedback is called")
     // Reset all status messages
     $('.feedback-status').empty();
 
     // All went well
     if (!data.errors && data.feedback) {
+      console.log("there was no errors in data for updateFeedback")
       // The input was valid - reset the form
       $('.feedback-form').trigger('reset');
+
 
       $.each(data.feedback, function createHtml(key, item) {
         render.push(
@@ -61,7 +66,7 @@ $(function feedback() {
 
     // XHR POST request
     $.post(
-      '/feedback/api',
+      '/fbResult/api',
       // Gather all data from the form and create a JSON object from it
       {
         entry: uniqid(),

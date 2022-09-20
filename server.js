@@ -17,7 +17,7 @@ const routes = require('./routes');
 
 const app = express();
 
-app.locals.siteName = 'ROUX Academy';
+app.locals.siteName = 'Collin Academy';
 
 const port = 3030;
 
