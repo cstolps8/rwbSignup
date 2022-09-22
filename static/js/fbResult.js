@@ -50,26 +50,44 @@ $(function fbResult() {
         }
     }
 
-
+    // TODO
+    // export data to excel
     $('.feedback').on('click', '#exportToExcel', function (e) {
-        console.log("hellp")
+        console.log("sending export excel")
+
+        // $.ajax({
+        //     type: 'GET',
+        //     url:'/fbResult/api/exportResults/',
+        //     success: function () {
+        //         alert("Exporting Results")
+        //     },
+        // })
+        
     })
 
+    // refresh the table
+    $('.feedback').on('click', '#refreshPage', function (e) {
+        console.log("refreshing table")
+        location.reload();
+        setTimeout(function () {
+        }, 8000); // 3000 milliseconds means 3 seconds.
+    })
+
+    // delete entry by id 
     $('.feedback-table-body').on('click', '.feedback-delete', function (e) {
         console.log("button clicked")
-        var id = $(this).parent().parent().prop("id")//.closest('tr').find('#feedback-table-row')//.id;
+        var id = $(this).parent().parent().prop("id")
 
         console.log("clicked button with id " + id)
         $.ajax({
             type: 'DELETE',
-            url: '/fbResult/api/delete/'+id,
-            success: function(){
+            url: '/fbResult/api/delete/' + id,
+            success: function () {
                 $("#" + id).remove()
             },
         });
         console.log(id);
     });
-
 
 
     function cb(random = false) {
@@ -79,13 +97,7 @@ $(function fbResult() {
         return `${id}${random ? `.${Math.trunc(Math.random() * 100000000)}` : ""}`;
     };
 
+    //TODO:
     // update entry
-
-    // delete entry
-
-
-
-    // export data
-
 
 });

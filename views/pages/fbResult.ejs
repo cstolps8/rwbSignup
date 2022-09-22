@@ -8,11 +8,13 @@
               <div class="feedback-item media">
                 <div class="feedback-info media-body">
                   <div class="feedback-head">
-                    <button type="button" id="exportToExcel" class="btn btn-success" > Export to Excel</button>
+                    <!-- <button type="button" id="exportToExcel" class="btn btn-success" > Export to Excel </button> -->
+                    <a href="fbResult/api/exportResults/" class="button"><button type="button" id="exportToExcel" class="btn btn-success" > Export to Excel </button></a>
 
   
                     <table class="table">
-                      <thead>
+                        <thead>
+                          <button type="button" id="refreshPage" class="btn btn-success" ><i class="fa fa-refresh" aria-hidden="true"></i> Check for new entries</button>
                         <tr>
                           <th scope="col" >Name</th>
                           <th scope="col"> Email</th>

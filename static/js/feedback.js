@@ -82,39 +82,6 @@ $(function feedback() {
     );
   });
 
-  $('#btn').click(function (e) {
-    console.log("hellp")
-  })
-
-  $('.feedback-table-body').on('click', '#btn', function (e) {
-    console.log("button clicked")
-    var id = $(this).parent().parent().prop("id")//.closest('tr').find('#feedback-table-row')//.id;
-
-    $("#" + id).remove()
-
-    //xhr DELETE   
-    // $.post(
-    //   '/feedback/api',
-    //   // Gather all data from the form and create a JSON object from it
-    //   {
-    //     entry: id,
-    //     name: $('#feedback-form-name').val(),
-    //     email: $('#feedback-form-email').val(),
-    //     phoneNumber: $('#feedback-form-phoneNumber').val(),
-    //     dateOfParty: $('#feedback-form-dateOfParty').val(),
-    //     receivePromos: $('#feedback-form-receivePromos').prop("checked"),
-    //     receiveTexts: $('#feedback-form-receiveTexts').prop("checked"),
-    //   },
-    // Callback to be called with the data
-    // updateFeedback
-    // );
-
-    console.log(id);
-  },
-    //Callback to be called with the data
-   // cb
-
-  );
 
   function uniqid(random = false) {
     const sec = Date.now() * 1000 + Math.random() * 1000;

@@ -19,7 +19,7 @@ const app = express();
 
 app.locals.siteName = 'Collin Academy';
 
-const port = 3030;
+const port = 80;
 
 app.set('trust proxy', 1);
 

@@ -1,5 +1,8 @@
 const fs = require('fs');
+const { urlToHttpOptions } = require('url');
 const util = require('util');
+var XLSX = require("xlsx");
+
 
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
@@ -46,14 +49,35 @@ class FBResultService {
     //update entry
 
     //delete entry
-    async removeEntry(entry){
-        console.log("removing id: "+ entry)
+    async removeEntry(entry) {
+        console.log("removing id: " + entry)
         const data = (await this.getData()) || [];
-        data.splice(data.findIndex(function(i){
+        data.splice(data.findIndex(function (i) {
             return i.entry === entry;
         }), 1);
         return writeFile(this.datafile, JSON.stringify(data));
-    
+
+    }
+
+    // export data to excel 
+
+    async exportToExcel() {
+        console.log("exporting excel")
+        const data = (await this.getData()) || [];
+
+        const workSheet = XLSX.utils.json_to_sheet(data);
+        const workBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workBook, workSheet, "This Months date");
+
+        // Generate buffer
+        XLSX.write(workBook, { bookType: 'xlsx', type: 'buffer' })
+
+        // Binary Stringy
+        XLSX.write(workBook, { bookType: 'xlsx', type: 'binary' })
+
+        XLSX.writeFile(workBook, './resources/Results.xlsx')
+
+        return __dirname+'/../resources/Results.xlsx'
     }
 
     /**

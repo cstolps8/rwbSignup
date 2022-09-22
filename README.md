@@ -16,3 +16,10 @@ The master branch contains the initial version to get started with, while the br
   ```
   
 Everything else will be discussed in my course.
+
+
+https://docs.google.com/forms/d/1I5CnKf2UGzHbqVM9KiorYnmSM0zdBF78shfuc-z5a-E/edit
+
+https://www.the-qrcode-generator.com/mycodes/4qxR51gNzyS
+
+https://rapidapi.com/twilio/api/twilio-sms/pricing

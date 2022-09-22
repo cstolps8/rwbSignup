@@ -83,13 +83,27 @@ module.exports = params => {
             //     return response.json({ errors: errors.array() });
             // }
             const { entry } = request.params;
-            console.log("router "+ entry)
+            console.log("router " + entry)
             await fbResultService.removeEntry(entry);
             const fbResult = await fbResultService.getList();
             return response.json({ fbResult, successMessage: 'Thank you for your fbResult!' });
         } catch (err) {
             return next(err);
         }
+    });
+
+
+    router.get('/api/exportResults/', async (request, response, next) => {
+
+        var excel = await fbResultService.exportToExcel()
+        console.log("exel file= " + excel)
+        return response.download(excel, 'Results.xlsx', function (err) {
+            if (err) {
+                console.log(err);
+            }
+
+        });
+
     });
 
     return router;
