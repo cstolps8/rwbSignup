@@ -28,7 +28,7 @@ app.use(
     name: 'session',
     keys: ['Ghdur687399s7w', 'hhjjdf89s866799'],
   })
-);
+); 
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

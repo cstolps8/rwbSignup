@@ -55,13 +55,7 @@ $(function fbResult() {
     $('.feedback').on('click', '#exportToExcel', function (e) {
         console.log("sending export excel")
 
-        // $.ajax({
-        //     type: 'GET',
-        //     url:'/fbResult/api/exportResults/',
-        //     success: function () {
-        //         alert("Exporting Results")
-        //     },
-        // })
+
         
     })
 
